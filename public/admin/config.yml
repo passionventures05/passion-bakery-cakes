@@ -8,7 +8,7 @@ backend:
   name: github
   repo: passionventures05/passion-bakery-cakes            # <-- EDIT
   branch: main
-  base_url: https://passion-cms-auth.YOUR-SUBDOMAIN.workers.dev   # <-- EDIT
+  base_url: https://passion-cms-auth.passionventures.workers.dev
   auth_endpoint: auth
   commit_messages:
     create: 'Add cake "{{slug}}"'
