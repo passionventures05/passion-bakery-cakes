@@ -1,0 +1,15 @@
+{
+  "name": "Jalebi Cake",
+  "category": "Traditional Fusion Cakes",
+  "available": true,
+  "order": 290,
+  "basePrice": 799,
+  "baseQuantity": "500gm",
+  "availableQuantities": [
+    "500gm",
+    "1kg",
+    "1.5kg",
+    "2kg"
+  ],
+  "description": "The festive sweetness of jalebi, reimagined as a celebration cake."
+}

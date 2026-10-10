@@ -1,0 +1,15 @@
+{
+  "name": "Vanilla Caramel Cake",
+  "category": "Vanilla",
+  "available": true,
+  "order": 20,
+  "basePrice": 599,
+  "baseQuantity": "500gm",
+  "availableQuantities": [
+    "500gm",
+    "1kg",
+    "1.5kg",
+    "2kg"
+  ],
+  "description": "Soft vanilla layers paired with rich, golden caramel."
+}

@@ -1,0 +1,15 @@
+{
+  "name": "Rich Red Velvet Cream Cake",
+  "category": "Red Velvet Cake",
+  "available": true,
+  "order": 880,
+  "basePrice": 979,
+  "baseQuantity": "500gm",
+  "availableQuantities": [
+    "500gm",
+    "1kg",
+    "1.5kg",
+    "2kg"
+  ],
+  "description": "A rich, velvety red velvet cake with smooth cream."
+}

@@ -1,0 +1,15 @@
+{
+  "name": "Strawberry Cake",
+  "category": "Flavoured Cakes",
+  "available": true,
+  "order": 40,
+  "basePrice": 549,
+  "baseQuantity": "500gm",
+  "availableQuantities": [
+    "500gm",
+    "1kg",
+    "1.5kg",
+    "2kg"
+  ],
+  "description": "Soft, creamy layers with sweet, juicy strawberry."
+}

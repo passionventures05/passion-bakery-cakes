@@ -1,0 +1,15 @@
+{
+  "name": "Death By Chocolate Cake",
+  "category": "Rich Chocolate Truffle",
+  "available": true,
+  "order": 450,
+  "basePrice": 849,
+  "baseQuantity": "500gm",
+  "availableQuantities": [
+    "500gm",
+    "1kg",
+    "1.5kg",
+    "2kg"
+  ],
+  "description": "For the serious chocolate lover: layer upon layer of intense chocolate."
+}

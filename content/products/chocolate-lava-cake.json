@@ -1,0 +1,15 @@
+{
+  "name": "Chocolate Lava Cake",
+  "category": "Rich Chocolate Truffle",
+  "available": true,
+  "order": 490,
+  "basePrice": 849,
+  "baseQuantity": "500gm",
+  "availableQuantities": [
+    "500gm",
+    "1kg",
+    "1.5kg",
+    "2kg"
+  ],
+  "description": "A decadent chocolate cake inspired by the classic molten lava dessert."
+}

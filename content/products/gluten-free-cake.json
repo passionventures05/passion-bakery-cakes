@@ -1,0 +1,15 @@
+{
+  "name": "Gluten Free Cake",
+  "category": "Custom Cake",
+  "available": true,
+  "order": 590,
+  "basePrice": 849,
+  "baseQuantity": "500gm",
+  "availableQuantities": [
+    "500gm",
+    "1kg",
+    "1.5kg",
+    "2kg"
+  ],
+  "description": "A soft cake made gluten free. Please tell us about any allergies and dietary needs when you order."
+}

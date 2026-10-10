@@ -1,0 +1,15 @@
+{
+  "name": "Raspberry Cake",
+  "category": "Flavoured Cakes",
+  "available": true,
+  "order": 60,
+  "basePrice": 549,
+  "baseQuantity": "500gm",
+  "availableQuantities": [
+    "500gm",
+    "1kg",
+    "1.5kg",
+    "2kg"
+  ],
+  "description": "Soft layers with the bright, tangy sweetness of raspberry."
+}

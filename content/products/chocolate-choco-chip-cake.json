@@ -1,0 +1,15 @@
+{
+  "name": "Chocolate Choco-Chip Cake",
+  "category": "Rich Chocolate Truffle",
+  "available": true,
+  "order": 400,
+  "basePrice": 799,
+  "baseQuantity": "500gm",
+  "availableQuantities": [
+    "500gm",
+    "1kg",
+    "1.5kg",
+    "2kg"
+  ],
+  "description": "A rich chocolate truffle cake with chocolate chips for extra indulgence."
+}

@@ -1,0 +1,15 @@
+{
+  "name": "Cream Castle Red Velvet Cake",
+  "category": "Red Velvet Cake",
+  "available": true,
+  "order": 870,
+  "basePrice": 849,
+  "baseQuantity": "500gm",
+  "availableQuantities": [
+    "500gm",
+    "1kg",
+    "1.5kg",
+    "2kg"
+  ],
+  "description": "Velvety red layers with smooth cream: a showstopper for any celebration."
+}

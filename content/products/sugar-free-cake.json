@@ -1,0 +1,13 @@
+{
+  "name": "Sugar Free Cake",
+  "category": "Diabetic Cake",
+  "available": true,
+  "order": 570,
+  "basePrice": 849,
+  "baseQuantity": "500gm",
+  "availableQuantities": [
+    "500gm",
+    "1kg"
+  ],
+  "description": "A cake made sugar free, so you can enjoy the celebration without the sugar. Please tell us about any dietary needs when you order."
+}

@@ -1,0 +1,13 @@
+{
+  "name": "Coconut & Almond Flour Cake",
+  "category": "Diabetic Cake",
+  "available": true,
+  "order": 640,
+  "basePrice": 949,
+  "baseQuantity": "500gm",
+  "availableQuantities": [
+    "500gm",
+    "1kg"
+  ],
+  "description": "A soft, nutty cake made with almond flour and the gentle sweetness of coconut. Please tell us about any dietary needs when you order."
+}

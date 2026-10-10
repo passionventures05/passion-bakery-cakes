@@ -1,0 +1,15 @@
+{
+  "name": "Velvety Red Cake",
+  "category": "Red Velvet Cake",
+  "available": true,
+  "order": 820,
+  "basePrice": 979,
+  "baseQuantity": "500gm",
+  "availableQuantities": [
+    "500gm",
+    "1kg",
+    "1.5kg",
+    "2kg"
+  ],
+  "description": "A soft, velvety red cake that is as beautiful as it is delicious."
+}

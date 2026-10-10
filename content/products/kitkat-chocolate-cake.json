@@ -1,0 +1,15 @@
+{
+  "name": "KitKat Chocolate Cake",
+  "category": "Rich Chocolate Truffle",
+  "available": true,
+  "order": 420,
+  "basePrice": 799,
+  "baseQuantity": "500gm",
+  "availableQuantities": [
+    "500gm",
+    "1kg",
+    "1.5kg",
+    "2kg"
+  ],
+  "description": "Rich chocolate finished with the crunch of KitKat."
+}

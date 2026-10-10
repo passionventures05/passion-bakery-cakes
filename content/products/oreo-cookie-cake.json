@@ -1,0 +1,15 @@
+{
+  "name": "Oreo Cookie Cake",
+  "category": "Vanilla",
+  "available": true,
+  "order": 240,
+  "basePrice": 749,
+  "baseQuantity": "500gm",
+  "availableQuantities": [
+    "500gm",
+    "1kg",
+    "1.5kg",
+    "2kg"
+  ],
+  "description": "Soft cream layers loaded with the crunch of Oreo cookies."
+}

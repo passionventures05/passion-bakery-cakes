@@ -1,0 +1,68 @@
+/* Tailwind (theme + utilities only). Preflight is intentionally NOT imported so the
+   original site's look is not altered by Tailwind's reset. */
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #1ef2fd;
+}
+
+/* ---------- Icons (inline SVG, replaces Font Awesome 4 webfont) ---------- */
+.fa { display: inline-block; font-style: normal; line-height: 1; }
+.fa svg { display: inline-block; vertical-align: -0.125em; }
+
+/* ---------- Accessibility ---------- */
+.skip-link {
+  position: absolute; left: -9999px; top: 0; z-index: 3000;
+  background: #11124a; color: #fff; padding: 12px 18px; border-radius: 0 0 10px 0;
+  font-family: Delius, sans-serif; text-decoration: none;
+}
+.skip-link:focus { left: 0; }
+
+.site main { display: contents; }
+
+.site a:focus-visible,
+.site button:focus-visible,
+.site input:focus-visible,
+.site select:focus-visible,
+.site textarea:focus-visible,
+.site [role="button"]:focus-visible,
+.site [tabindex]:focus-visible {
+  outline: 3px solid #11124a;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 5px #ffffff;
+}
+
+.site .reviews-scroll:focus-within { animation-play-state: paused; }
+
+@media (prefers-reduced-motion: reduce) {
+  .site *, .site *::before, .site *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  html { scroll-behavior: auto; }
+  .site .reviews-container { overflow-x: auto; }
+  .site .reviews-scroll { animation: none !important; }
+  .site .reviews-scroll [aria-hidden="true"] { display: none; }
+}
+
+/* ---------- Android / notch safe areas (all values are 0 in a normal browser) ---------- */
+body {
+  padding-left: env(safe-area-inset-left, 0px);
+  padding-right: env(safe-area-inset-right, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+.site .topnav { padding-top: env(safe-area-inset-top, 0px) !important; }
+
+.site .visually-hidden {
+  position: absolute !important; width: 1px !important; height: 1px !important; margin: -1px !important;
+  padding: 0 !important; border: 0 !important; overflow: hidden !important; clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+}

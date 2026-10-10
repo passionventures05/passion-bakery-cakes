@@ -1,0 +1,15 @@
+{
+  "name": "Gulab Jamun Cake",
+  "category": "Traditional Fusion Cakes",
+  "available": true,
+  "order": 280,
+  "basePrice": 799,
+  "baseQuantity": "500gm",
+  "availableQuantities": [
+    "500gm",
+    "1kg",
+    "1.5kg",
+    "2kg"
+  ],
+  "description": "An Indian-sweet fusion: the warm, syrupy flavour of gulab jamun in a celebration cake."
+}

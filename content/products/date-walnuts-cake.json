@@ -1,0 +1,13 @@
+{
+  "name": "Date & Walnuts Cake",
+  "category": "Diabetic Cake",
+  "available": true,
+  "order": 620,
+  "basePrice": 949,
+  "baseQuantity": "500gm",
+  "availableQuantities": [
+    "500gm",
+    "1kg"
+  ],
+  "description": "A soft, rich cake with the natural sweetness of dates and the crunch of walnuts. Please tell us about any dietary needs when you order."
+}

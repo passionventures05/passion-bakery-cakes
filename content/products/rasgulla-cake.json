@@ -1,0 +1,15 @@
+{
+  "name": "Rasgulla Cake",
+  "category": "Traditional Fusion Cakes",
+  "available": true,
+  "order": 260,
+  "basePrice": 799,
+  "baseQuantity": "500gm",
+  "availableQuantities": [
+    "500gm",
+    "1kg",
+    "1.5kg",
+    "2kg"
+  ],
+  "description": "The soft, syrupy sweetness of rasgulla, reimagined as a celebration cake."
+}

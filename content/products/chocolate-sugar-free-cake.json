@@ -1,0 +1,13 @@
+{
+  "name": "Chocolate Sugar Free Cake",
+  "category": "Diabetic Cake",
+  "available": true,
+  "order": 630,
+  "basePrice": 949,
+  "baseQuantity": "500gm",
+  "availableQuantities": [
+    "500gm",
+    "1kg"
+  ],
+  "description": "A chocolate cake made sugar free, for a sweet treat without the sugar. Please tell us about any dietary needs when you order."
+}

@@ -1,0 +1,15 @@
+{
+  "name": "Chocolate & Raspberry Cake",
+  "category": "Chocolate",
+  "available": true,
+  "order": 340,
+  "basePrice": 749,
+  "baseQuantity": "500gm",
+  "availableQuantities": [
+    "500gm",
+    "1kg",
+    "1.5kg",
+    "2kg"
+  ],
+  "description": "Rich chocolate lifted by the bright, tangy sweetness of raspberry."
+}

@@ -1,0 +1,15 @@
+{
+  "name": "Chocolate Hazelnut Cake",
+  "category": "Chocolate",
+  "available": true,
+  "order": 230,
+  "basePrice": 699,
+  "baseQuantity": "500gm",
+  "availableQuantities": [
+    "500gm",
+    "1kg",
+    "1.5kg",
+    "2kg"
+  ],
+  "description": "Smooth chocolate layers with the nutty warmth of hazelnut."
+}

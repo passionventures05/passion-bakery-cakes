@@ -1,0 +1,13 @@
+{
+  "name": "Orange Pistachio Cake",
+  "category": "Diabetic Cake",
+  "available": true,
+  "order": 610,
+  "basePrice": 949,
+  "baseQuantity": "500gm",
+  "availableQuantities": [
+    "500gm",
+    "1kg"
+  ],
+  "description": "Bright, zesty orange with the delicate flavour of pistachio. Please tell us about any dietary needs when you order."
+}

@@ -1,0 +1,15 @@
+{
+  "name": "Chocolate Fudge Cake",
+  "category": "Chocolate",
+  "available": true,
+  "order": 330,
+  "basePrice": 749,
+  "baseQuantity": "500gm",
+  "availableQuantities": [
+    "500gm",
+    "1kg",
+    "1.5kg",
+    "2kg"
+  ],
+  "description": "Dense, fudgy chocolate layers made for true chocolate lovers."
+}

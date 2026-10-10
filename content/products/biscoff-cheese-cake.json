@@ -1,0 +1,15 @@
+{
+  "name": "Biscoff Cheese Cake",
+  "category": "Cheese Cake",
+  "available": true,
+  "order": 900,
+  "basePrice": 450,
+  "baseQuantity": "1pc",
+  "availableQuantities": [
+    "1pc",
+    "3pc",
+    "5pc",
+    "7pc"
+  ],
+  "description": "A silky, creamy cheesecake with the caramelised-biscuit flavour of Biscoff."
+}

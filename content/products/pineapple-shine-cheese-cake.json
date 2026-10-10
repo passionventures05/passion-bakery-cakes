@@ -1,0 +1,15 @@
+{
+  "name": "Pineapple Shine Cheese Cake",
+  "category": "Cheese Cake",
+  "available": true,
+  "order": 520,
+  "basePrice": 349,
+  "baseQuantity": "1pc",
+  "availableQuantities": [
+    "1pc",
+    "3pc",
+    "5pc",
+    "7pc"
+  ],
+  "description": "A smooth, creamy cheesecake with the bright flavour of pineapple."
+}

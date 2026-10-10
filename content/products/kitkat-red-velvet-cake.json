@@ -1,0 +1,15 @@
+{
+  "name": "Kitkat Red Velvet Cake",
+  "category": "Red Velvet Cake",
+  "available": true,
+  "order": 790,
+  "basePrice": 979,
+  "baseQuantity": "600gm",
+  "availableQuantities": [
+    "500gm",
+    "1kg",
+    "1.5kg",
+    "2kg"
+  ],
+  "description": "Velvety red layers topped with the crunch of KitKat."
+}

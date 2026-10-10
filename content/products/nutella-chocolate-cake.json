@@ -1,0 +1,15 @@
+{
+  "name": "Nutella Chocolate Cake",
+  "category": "Rich Chocolate Truffle",
+  "available": true,
+  "order": 460,
+  "basePrice": 849,
+  "baseQuantity": "500gm",
+  "availableQuantities": [
+    "500gm",
+    "1kg",
+    "1.5kg",
+    "2kg"
+  ],
+  "description": "Rich chocolate layers with creamy Nutella: pure indulgence."
+}

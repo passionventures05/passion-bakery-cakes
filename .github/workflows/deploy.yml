@@ -1,0 +1,43 @@
+name: Build & deploy site
+
+# Runs on every push to main (including the commit Decap CMS makes when the client saves a product).
+on:
+  push:
+    branches: [main]
+    paths-ignore: ["docs/**", "cms-auth-worker/**", "README.md"]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-site
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      # Type-check + unit tests + validates every product file.
+      # If a product edit is invalid, the job stops here and the live site is NOT changed.
+      - run: npm run check
+
+      - run: npm run build
+        env:
+          NEXT_PUBLIC_SITE_URL: ${{ vars.SITE_URL }}
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy out --project-name=${{ vars.CF_PAGES_PROJECT }} --branch=main

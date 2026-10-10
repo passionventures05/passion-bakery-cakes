@@ -1,0 +1,15 @@
+{
+  "name": "Chocolate Biscoff Cake",
+  "category": "Chocolate",
+  "available": true,
+  "order": 10,
+  "basePrice": 699,
+  "baseQuantity": "500gm",
+  "availableQuantities": [
+    "500gm",
+    "1kg",
+    "1.5kg",
+    "2kg"
+  ],
+  "description": "Rich chocolate layers meet the caramelised spice of Biscoff for a truly indulgent bite."
+}

@@ -1,0 +1,15 @@
+{
+  "name": "Pineapple Cake",
+  "category": "Flavoured Cakes",
+  "available": true,
+  "order": 80,
+  "basePrice": 549,
+  "baseQuantity": "500gm",
+  "availableQuantities": [
+    "500gm",
+    "1kg",
+    "1.5kg",
+    "2kg"
+  ],
+  "description": "A soft, creamy classic with sweet, juicy pineapple."
+}

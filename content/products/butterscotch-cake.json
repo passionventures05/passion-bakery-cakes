@@ -1,0 +1,15 @@
+{
+  "name": "Butterscotch Cake",
+  "category": "Vanilla",
+  "available": true,
+  "order": 200,
+  "basePrice": 699,
+  "baseQuantity": "500gm",
+  "availableQuantities": [
+    "500gm",
+    "1kg",
+    "1.5kg",
+    "2kg"
+  ],
+  "description": "Soft vanilla layers with the warm, buttery sweetness of butterscotch."
+}

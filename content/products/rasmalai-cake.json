@@ -1,0 +1,15 @@
+{
+  "name": "Rasmalai Cake",
+  "category": "Traditional Fusion Cakes",
+  "available": true,
+  "order": 270,
+  "basePrice": 799,
+  "baseQuantity": "500gm",
+  "availableQuantities": [
+    "500gm",
+    "1kg",
+    "1.5kg",
+    "2kg"
+  ],
+  "description": "The beloved rasmalai, creamy and delicately flavoured, in cake form."
+}

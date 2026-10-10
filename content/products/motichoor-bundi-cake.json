@@ -1,0 +1,15 @@
+{
+  "name": "Motichoor Bundi Cake",
+  "category": "Traditional Fusion Cakes",
+  "available": true,
+  "order": 300,
+  "basePrice": 799,
+  "baseQuantity": "500gm",
+  "availableQuantities": [
+    "500gm",
+    "1kg",
+    "1.5kg",
+    "2kg"
+  ],
+  "description": "The festive sweetness of motichoor, reimagined as a cake."
+}

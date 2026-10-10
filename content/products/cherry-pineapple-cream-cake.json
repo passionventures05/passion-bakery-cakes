@@ -1,0 +1,15 @@
+{
+  "name": "Cherry Pineapple Cream Cake",
+  "category": "Flavoured Cakes",
+  "available": true,
+  "order": 140,
+  "basePrice": 649,
+  "baseQuantity": "500gm",
+  "availableQuantities": [
+    "500gm",
+    "1kg",
+    "1.5kg",
+    "2kg"
+  ],
+  "description": "A cheerful pairing of juicy cherry and sweet pineapple in soft, creamy layers."
+}

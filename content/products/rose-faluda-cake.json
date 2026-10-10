@@ -1,0 +1,15 @@
+{
+  "name": "Rose Faluda Cake",
+  "category": "Flavoured Cakes",
+  "available": true,
+  "order": 320,
+  "basePrice": 749,
+  "baseQuantity": "500gm",
+  "availableQuantities": [
+    "500gm",
+    "1kg",
+    "1.5kg",
+    "2kg"
+  ],
+  "description": "The fragrant, festive flavours of rose falooda in a celebration cake."
+}

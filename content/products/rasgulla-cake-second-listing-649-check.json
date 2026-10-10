@@ -1,0 +1,15 @@
+{
+  "name": "Rasgulla Cake (second listing, ₹649 - check)",
+  "category": "Traditional Fusion Cakes",
+  "available": false,
+  "order": 850,
+  "basePrice": 649,
+  "baseQuantity": "500gm",
+  "availableQuantities": [
+    "500gm",
+    "1kg",
+    "1.5kg",
+    "2kg"
+  ],
+  "description": "The soft, syrupy sweetness of rasgulla, reimagined as a celebration cake."
+}

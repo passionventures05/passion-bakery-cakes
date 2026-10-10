@@ -1,0 +1,15 @@
+{
+  "name": "Truffle Cake",
+  "category": "Rich Chocolate Truffle",
+  "available": true,
+  "order": 210,
+  "basePrice": 699,
+  "baseQuantity": "500gm",
+  "availableQuantities": [
+    "500gm",
+    "1kg",
+    "1.5kg",
+    "2kg"
+  ],
+  "description": "A classic chocolate truffle cake: rich, smooth and silky."
+}

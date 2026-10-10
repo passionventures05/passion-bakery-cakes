@@ -1,0 +1,15 @@
+{
+  "name": "Photo Cake {Doremon Design}",
+  "category": "Photo Cake",
+  "available": true,
+  "order": 700,
+  "basePrice": 1549,
+  "baseQuantity": "1kg",
+  "availableQuantities": [
+    "1kg",
+    "1.5kg",
+    "2kg",
+    "2.5kg"
+  ],
+  "description": "A personalised photo cake in the Doremon style, made to delight at birthdays and parties. Send us your reference pictures on WhatsApp."
+}

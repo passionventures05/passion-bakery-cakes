@@ -1,0 +1,15 @@
+{
+  "name": "Blueberry Cake",
+  "category": "Flavoured Cakes",
+  "available": true,
+  "order": 50,
+  "basePrice": 549,
+  "baseQuantity": "500gm",
+  "availableQuantities": [
+    "500gm",
+    "1kg",
+    "1.5kg",
+    "2kg"
+  ],
+  "description": "Soft, fruity layers with the bright, sweet-tart flavour of blueberry."
+}

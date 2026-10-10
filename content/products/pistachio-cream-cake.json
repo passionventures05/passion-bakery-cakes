@@ -1,0 +1,15 @@
+{
+  "name": "Pistachio Cream Cake",
+  "category": "Traditional Fusion Cakes",
+  "available": true,
+  "order": 250,
+  "basePrice": 799,
+  "baseQuantity": "500gm",
+  "availableQuantities": [
+    "500gm",
+    "1kg",
+    "1.5kg",
+    "2kg"
+  ],
+  "description": "Soft layers with silky cream and the delicate flavour of pistachio."
+}

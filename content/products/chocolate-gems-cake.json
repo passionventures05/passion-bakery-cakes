@@ -1,0 +1,15 @@
+{
+  "name": "Chocolate Gems Cake",
+  "category": "Rich Chocolate Truffle",
+  "available": true,
+  "order": 410,
+  "basePrice": 799,
+  "baseQuantity": "500gm",
+  "availableQuantities": [
+    "500gm",
+    "1kg",
+    "1.5kg",
+    "2kg"
+  ],
+  "description": "A rich chocolate cake finished with colourful gems, a favourite at kids' parties."
+}

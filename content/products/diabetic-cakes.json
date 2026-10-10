@@ -1,0 +1,13 @@
+{
+  "name": "Diabetic Cakes",
+  "category": "Diabetic Cake",
+  "available": true,
+  "order": 600,
+  "basePrice": 949,
+  "baseQuantity": "500gm",
+  "availableQuantities": [
+    "500gm",
+    "1kg"
+  ],
+  "description": "A specially made cake for those watching their sugar. Please message us about your dietary needs before ordering."
+}

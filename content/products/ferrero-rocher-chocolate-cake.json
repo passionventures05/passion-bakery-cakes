@@ -1,0 +1,15 @@
+{
+  "name": "Ferrero Rocher Chocolate Cake",
+  "category": "Rich Chocolate Truffle",
+  "available": true,
+  "order": 350,
+  "basePrice": 849,
+  "baseQuantity": "500gm",
+  "availableQuantities": [
+    "500gm",
+    "1kg",
+    "1.5kg",
+    "2kg"
+  ],
+  "description": "Chocolate and hazelnut inspired by the beloved Ferrero Rocher: rich, nutty and festive."
+}

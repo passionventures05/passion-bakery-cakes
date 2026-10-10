@@ -1,0 +1,15 @@
+{
+  "name": "Mangoes Cake",
+  "category": "Flavoured Cakes",
+  "available": true,
+  "order": 70,
+  "basePrice": 549,
+  "baseQuantity": "500gm",
+  "availableQuantities": [
+    "500gm",
+    "1kg",
+    "1.5kg",
+    "2kg"
+  ],
+  "description": "Sweet, juicy mango in soft, fruity layers, a summer favourite."
+}

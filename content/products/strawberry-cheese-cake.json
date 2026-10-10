@@ -1,0 +1,16 @@
+{
+  "name": "Strawberry Cheese Cake",
+  "category": "Cheese Cake",
+  "available": true,
+  "order": 540,
+  "basePrice": 349,
+  "baseQuantity": "1pc",
+  "availableQuantities": [
+    "1pc",
+    "3pc",
+    "5pc",
+    "7pc"
+  ],
+  "description": "A silky, creamy cheesecake with the sweet flavour of strawberry.",
+  "image": "/uploads/products/strawberry-cheese-cake.jpg"
+}

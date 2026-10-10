@@ -1,0 +1,13 @@
+name = "passion-cms-auth"
+main = "src/index.js"
+compatibility_date = "2025-01-01"
+
+[vars]
+# Comma-separated list of sites allowed to receive the login token (no trailing slash).
+ALLOWED_ORIGINS = "https://passionbakerynchocos.com"
+# "repo,user" works for private AND public repos. Use "public_repo,user" if the repo is public.
+GITHUB_SCOPE = "repo,user"
+
+# Secrets (NOT stored here) – set once with:
+#   npx wrangler secret put GITHUB_CLIENT_ID
+#   npx wrangler secret put GITHUB_CLIENT_SECRET

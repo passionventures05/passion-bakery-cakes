@@ -1,0 +1,15 @@
+{
+  "name": "Chocolate & Mint Cake",
+  "category": "Custom Cake",
+  "available": true,
+  "order": 370,
+  "basePrice": 849,
+  "baseQuantity": "500gm",
+  "availableQuantities": [
+    "500gm",
+    "1kg",
+    "1.5kg",
+    "2kg"
+  ],
+  "description": "Rich chocolate with a cool, fresh hint of mint."
+}

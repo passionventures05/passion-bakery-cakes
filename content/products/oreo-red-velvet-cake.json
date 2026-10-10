@@ -1,0 +1,15 @@
+{
+  "name": "Oreo Red Velvet Cake",
+  "category": "Red Velvet Cake",
+  "available": true,
+  "order": 800,
+  "basePrice": 979,
+  "baseQuantity": "600gm",
+  "availableQuantities": [
+    "500gm",
+    "1kg",
+    "1.5kg",
+    "2kg"
+  ],
+  "description": "Velvety red layers with the crunch of Oreo, a real crowd-pleaser."
+}

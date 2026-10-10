@@ -1,0 +1,15 @@
+{
+  "name": "Chocolate Orange Cake",
+  "category": "Custom Cake",
+  "available": true,
+  "order": 390,
+  "basePrice": 799,
+  "baseQuantity": "500gm",
+  "availableQuantities": [
+    "500gm",
+    "1kg",
+    "1.5kg",
+    "2kg"
+  ],
+  "description": "A classic pairing of rich chocolate and zesty orange."
+}

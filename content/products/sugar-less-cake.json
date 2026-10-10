@@ -1,0 +1,15 @@
+{
+  "name": "Sugar Less Cake",
+  "category": "Low Sugar Cake",
+  "available": true,
+  "order": 580,
+  "basePrice": 799,
+  "baseQuantity": "500gm",
+  "availableQuantities": [
+    "500gm",
+    "1kg",
+    "1.5kg",
+    "2kg"
+  ],
+  "description": "A lighter-on-sugar cake for a gentler sweetness. Please tell us about any dietary needs when you order."
+}

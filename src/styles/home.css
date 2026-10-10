@@ -1,0 +1,605 @@
+      /* ========================================
+   CSS VARIABLES & ROOT CONFIGURATION
+   ======================================== */
+      .page-home {
+        --primary-gradient: linear-gradient(
+          90deg,
+          rgba(30, 242, 253, 0.95) 0%,
+          rgba(74, 144, 226, 0.95) 100%
+        );
+        --section-gradient: linear-gradient(
+          135deg,
+          #5a5eeb 0%,
+          #4a54d1 50%,
+          #3d47b8 100%
+        );
+        --button-gradient: linear-gradient(45deg, #11124a, #1a1d5a);
+        --hover-gradient: linear-gradient(45deg, #fea3aa, #ff7b82);
+        --gold: #ffd700;
+        --primary-text: #11124a;
+        --white: #ffffff;
+        --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        --border-radius: 20px;
+        min-height: 100vh;
+      }
+
+      .page-home {
+        scroll-behavior: smooth;
+        min-height: 100vh;
+      }
+
+      .page-home {
+        background: #1ef2fd;
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, sans-serif;
+        line-height: 1.6;
+        overflow-x: clip;
+        max-width: 100vw;
+        min-height: 100vh;
+      }
+
+      .page-home h1,
+      .page-home h2 {
+        color: var(--gold);
+        font-weight: bold;
+        font-size: clamp(1.8rem, 5vw, 3.5rem);
+        text-align: center;
+        margin-bottom: 15px;
+        font-family: var(--font-display);
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+      }
+
+      .page-home p {
+        font-weight: 400;
+        font-size: clamp(1rem, 2.5vw, 1.15rem);
+        line-height: 1.6;
+        font-family: var(--font-body);
+      }
+
+      .page-home img {
+        max-width: 100%;
+        height: auto;
+      }
+
+      /* ========================================
+   NAVIGATION BAR - ENHANCED WITH STICKY
+   ======================================== */
+
+
+      /* Banner */
+      .page-home #banner {
+        background: #1ef2fd;
+        color: var(--primary-text);
+        text-align: center;
+        padding: 20px 10px;
+        text-shadow: 2px 2px 5px pink;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .page-home #banner h1 {
+        margin-bottom: 10px;
+      }
+
+      .page-home #banner p {
+        font-size: clamp(1rem, 3vw, 1.125rem);
+        font-family: var(--font-body);
+      }
+
+
+
+      /* Sections */
+      .page-home section {
+        padding: clamp(20px, 5vw, 40px);
+        text-align: center;
+        margin-top: 30px;
+        position: relative;
+      }
+
+      .page-home section#featured-products,
+      .page-home section#about-me,
+      .page-home section#contact-me,
+      .page-home section#customer-reviews {
+        background: var(--section-gradient);
+        margin: 20px clamp(10px, 3vw, 20px);
+        color: var(--white);
+        border-radius: var(--border-radius);
+        box-shadow: 0 10px 30px rgba(90, 94, 235, 0.3);
+        overflow: hidden;
+        position: relative;
+      }
+
+      /* Reviews Section */
+      .page-home .reviews-container {
+        max-width: 100%;
+        margin: 0 auto;
+        overflow: hidden;
+        position: relative;
+        padding: 20px 0;
+      }
+
+      .page-home .reviews-scroll {
+        display: flex;
+        gap: 30px;
+        animation: smoothScroll 60s linear infinite;
+        width: max-content;
+      }
+
+      .page-home .reviews-scroll:hover {
+        animation-play-state: paused;
+      }
+
+      .page-home .review-card {
+        flex: 0 0 400px;
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 20px;
+        padding: 25px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        color: var(--primary-text);
+        text-align: left;
+        backdrop-filter: blur(10px);
+        border: 2px solid rgba(255, 215, 0, 0.3);
+        transition: transform 0.3s ease;
+      }
+
+      .page-home .review-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 45px rgba(0, 0, 0, 0.2);
+        border-color: var(--gold);
+      }
+
+      .page-home .review-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+      }
+
+      .page-home .reviewer-avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: var(--button-gradient);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin-right: 15px;
+        box-shadow: 0 4px 15px rgba(17, 18, 74, 0.3);
+      }
+
+      .page-home .reviewer-info h4 {
+        font-family: "Great Vibes", cursive;
+        color: var(--primary-text);
+        font-size: 1.3rem;
+        margin-bottom: 2px;
+        text-shadow: none;
+      }
+
+      .page-home .reviewer-info .stars {
+        color: #b45309;
+        font-size: 1rem;
+      }
+
+      .page-home .review-text {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        color: #333;
+        font-family: var(--font-body);
+        font-style: italic;
+        margin-bottom: 15px;
+      }
+
+      .page-home .review-date {
+        font-size: 0.8rem;
+        color: #666;
+        text-align: right;
+        font-family: var(--font-body);
+      }
+
+      .page-home .reviews-cta {
+        text-align: center;
+        margin-top: 30px;
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        backdrop-filter: blur(10px);
+      }
+
+      .page-home .reviews-cta p {
+        color: var(--white);
+        font-size: clamp(1rem, 2.5vw, 1.2rem);
+        margin-bottom: 20px;
+        font-family: var(--font-body);
+      }
+
+      .page-home .google-reviews-btn {
+        display: inline-block;
+        padding: 15px 30px;
+        background: var(--button-gradient);
+        color: white;
+        text-decoration: none;
+        border-radius: 25px;
+        font-family: var(--font-body);
+        font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+        font-weight: bold;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 8px 25px rgba(17, 18, 74, 0.3);
+        border: 2px solid rgba(255, 215, 0, 0.3);
+      }
+
+      .page-home .google-reviews-btn:hover {
+        background: var(--hover-gradient);
+        color: var(--primary-text);
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 12px 35px rgba(254, 163, 170, 0.4);
+        border-color: var(--gold);
+      }
+
+      /* Slider */
+      .page-home .slider-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        max-width: 100%;
+        margin: 0 auto;
+        overflow: hidden;
+        padding: 20px 0;
+        width: 100%;
+      }
+
+      .page-home .slider {
+        display: flex;
+        transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        width: 100%;
+      }
+
+      .page-home .slide {
+        flex: 0 0 100%;
+        text-align: center;
+        padding: 0 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .page-home .slide img {
+        max-width: min(70%, 400px);
+        max-height: 300px;
+        width: auto;
+        height: auto;
+        margin: 0 auto;
+        display: block;
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        border-radius: 15px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        object-fit: contain;
+      }
+
+      .page-home .slide img:hover {
+        transform: scale(1.04);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+      }
+
+      .page-home .slide p {
+        margin-top: 15px;
+        font-size: clamp(1rem, 3vw, 1.25rem);
+        font-family: var(--font-body);
+        color: var(--white);
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+      }
+
+      .page-home .slider-button {
+        background: var(--button-gradient);
+        color: #fff;
+        border: none;
+        padding: 12px 16px;
+        cursor: pointer;
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 10;
+        transition: var(--transition);
+        box-shadow: 0 4px 15px rgba(15, 16, 72, 0.3);
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .page-home .slider-button.prev {
+        left: 10px;
+      }
+
+      .page-home .slider-button.next {
+        right: 10px;
+      }
+
+      .page-home .slider-button:hover {
+        background: var(--hover-gradient);
+        color: var(--primary-text);
+        font-weight: bold;
+        transform: translateY(-50%) scale(1.1);
+        box-shadow: 0 8px 25px rgba(254, 163, 170, 0.4);
+      }
+
+      .page-home .slider-dots {
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      .page-home .slider-dots .dot {
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        margin: 0 6px;
+        background-color: rgba(255, 255, 255, 0.5);
+        border-radius: 50%;
+        cursor: pointer;
+        transition: var(--transition);
+        border: 2px solid transparent;
+      }
+
+      .page-home .slider-dots .dot.active {
+        background-color: var(--white);
+        transform: scale(1.3);
+        border-color: var(--gold);
+        box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+      }
+
+      .page-home .slider-dots .dot:hover {
+        background-color: rgba(255, 255, 255, 0.8);
+        transform: scale(1.1);
+      }
+
+      /* Shop Buttons */
+      .page-home .shop-button {
+        display: inline-block;
+        min-height: 45px;
+        min-width: 100px;
+        padding: 10px 15px;
+        margin: 15px 10px;
+        background: var(--button-gradient);
+        font-family: var(--font-body);
+        color: #f2f2f2;
+        font-size: clamp(0.9rem, 2vw, 1rem);
+        text-align: center;
+        line-height: 1.4;
+        border-radius: 25px;
+        text-decoration: none;
+        border: 2px solid #f2f2f2;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 6px 20px rgba(17, 18, 74, 0.3);
+      }
+
+      .page-home .shop-button:hover {
+        background: linear-gradient(45deg, var(--gold), #ffd700);
+        color: var(--primary-text);
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
+        border-color: var(--primary-text);
+      }
+
+      /* About & Contact */
+      .page-home #about-me,
+      .page-home #contact-me {
+        background: linear-gradient(
+          135deg,
+          #75a9d1 0%,
+          #5a8bb8 50%,
+          #4a7ba8 100%
+        );
+        padding: clamp(30px, 8vw, 50px) clamp(10px, 3vw, 20px);
+      }
+
+      .page-home .about-container,
+      .page-home .contact-container {
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 1200px;
+        margin: 0 auto;
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: var(--border-radius);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        overflow: hidden;
+        backdrop-filter: blur(10px);
+      }
+
+      .page-home .contact-container {
+        justify-content: center;
+        background: rgba(240, 245, 248, 0.95);
+      }
+
+      .page-home .about-left {
+        flex: 1;
+        min-width: 300px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #f0f5f8, #e8f2f7);
+        padding: 20px;
+      }
+
+      .page-home .about-left img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 15px;
+        object-fit: cover;
+        transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .page-home .about-left img:hover {
+        transform: scale(1.03);
+      }
+
+      .page-home .about-right {
+        flex: 1;
+        min-width: 300px;
+        padding: clamp(20px, 5vw, 30px);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        background: linear-gradient(135deg, #f9f9f9, #f0f4f7);
+      }
+
+      .page-home .about-right h2 {
+        margin-bottom: 20px;
+        font-size: clamp(1.5rem, 4vw, 2rem);
+        color: #0f1048;
+      }
+
+      .page-home .about-right p {
+        font-size: clamp(0.9rem, 2.5vw, 1rem);
+        color: #333;
+        line-height: 1.6;
+      }
+
+      /* Contact Form */
+      .page-home .contact-form {
+        flex: 1;
+        min-width: 300px;
+        padding: clamp(20px, 5vw, 30px);
+      }
+
+      .page-home .contact-form h2 {
+        margin-bottom: 20px;
+        color: #0f1048;
+        font-size: clamp(1.5rem, 4vw, 2rem);
+      }
+
+      .page-home .contact-form label {
+        display: block;
+        margin: 15px 0 8px;
+        font-size: clamp(0.9rem, 2.5vw, 1rem);
+        color: #333;
+        font-weight: 600;
+      }
+
+      .page-home .contact-form input,
+      .page-home .contact-form textarea {
+        width: 100%;
+        padding: 12px 15px;
+        margin-bottom: 20px;
+        border: 2px solid #ddd;
+        border-radius: 12px;
+        font-size: clamp(0.9rem, 2.5vw, 1rem);
+        transition: var(--transition);
+        background: rgba(255, 255, 255, 0.9);
+      }
+
+      .page-home .contact-form input:focus,
+      .page-home .contact-form textarea:focus {
+        outline: none;
+        border-color: #4a90e2;
+        background: rgba(255, 255, 255, 1);
+        box-shadow: 0 0 15px rgba(74, 144, 226, 0.2);
+        transform: translateY(-2px);
+      }
+
+      .page-home .contact-form button {
+        background: var(--button-gradient);
+        color: #fff;
+        border: none;
+        padding: 15px 30px;
+        border-radius: 25px;
+        cursor: pointer;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        font-size: clamp(0.9rem, 2.5vw, 1rem);
+        font-weight: 600;
+        box-shadow: 0 6px 20px rgba(15, 16, 72, 0.3);
+      }
+
+      .page-home .contact-form button:hover {
+        background: var(--hover-gradient);
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 10px 30px rgba(254, 163, 170, 0.4);
+      }
+
+      /* Social Links */
+      .page-home .social-links {
+        flex: 1;
+        min-width: 300px;
+        padding: clamp(20px, 5vw, 30px);
+        text-align: center;
+      }
+
+      .page-home .social-links h3 {
+        margin-bottom: 20px;
+        color: #0f1048;
+        font-size: clamp(1.3rem, 3.5vw, 1.8rem);
+      }
+
+      .page-home .social-links .social-icon {
+        display: inline-block;
+        margin: 0 12px 15px 12px;
+        width: 50px;
+        height: 50px;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .page-home .social-links .social-icon img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        object-fit: cover;
+      }
+
+      .page-home .social-links .social-icon:hover {
+        transform: translateY(-3px) scale(1.08);
+      }
+
+      .page-home .social-links .social-icon:hover img {
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Footer */
+      .page-home .business-footer {
+        background: linear-gradient(
+          135deg,
+          #0000ff 0%,
+          #1e3a8a 50%,
+          #1e40af 100%
+        );
+        margin-top: 30px;
+      }
+
+      .page-home .social-footer-links a:hover {
+        background: var(--hover-gradient);
+      }
+
+      /* ========================================
+   RESPONSIVE MEDIA QUERIES
+   ======================================== */
+      @media screen and (max-width: 768px) {
+
+        /* Fixed position for Cart Icon - always on extreme right */
+
+        /* Fixed position for Hamburger Icon - left of cart */
+
+
+        /* Keep active link in place on extreme left */
+
+        /* Cart Icon stays fixed on extreme right */
+
+        /* Hamburger Icon stays fixed left of cart */
+
+        /* Expanded menu items appear below the first row */
+
+        /* Keep the rest of your existing mobile styles below this */
+      }
+
+      @media screen and (max-width: 480px) {
+        .page-home .review-card {
+          flex: 0 0 280px;
+          padding: 15px;
+        }
+      }

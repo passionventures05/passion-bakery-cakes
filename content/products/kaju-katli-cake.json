@@ -1,0 +1,15 @@
+{
+  "name": "Kaju Katli Cake",
+  "category": "Traditional Fusion Cakes",
+  "available": true,
+  "order": 840,
+  "basePrice": 799,
+  "baseQuantity": "500gm",
+  "availableQuantities": [
+    "500gm",
+    "1kg",
+    "1.5kg",
+    "2kg"
+  ],
+  "description": "The rich, nutty flavours of kaju katli in a festive fusion cake."
+}

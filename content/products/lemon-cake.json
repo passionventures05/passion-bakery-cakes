@@ -1,0 +1,15 @@
+{
+  "name": "Lemon Cake",
+  "category": "Flavoured Cakes",
+  "available": true,
+  "order": 190,
+  "basePrice": 699,
+  "baseQuantity": "500gm",
+  "availableQuantities": [
+    "500gm",
+    "1kg",
+    "1.5kg",
+    "2kg"
+  ],
+  "description": "A soft, zesty lemon cake: fresh, light and citrusy."
+}
