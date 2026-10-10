@@ -1,43 +1,66 @@
-name: Build & deploy site
+# Builds the website and publishes it to GitHub Pages.
+# Runs automatically on every push to `main` (code changes AND CMS saves), or by hand from the Actions tab.
+# If the cake data or the code is invalid, the "check" step fails and the live site is left untouched.
+name: Deploy to GitHub Pages
 
-# Runs on every push to main (including the commit Decap CMS makes when the client saves a product).
 on:
   push:
     branches: [main]
-    paths-ignore: ["docs/**", "cms-auth-worker/**", "README.md"]
   workflow_dispatch:
-
-concurrency:
-  group: deploy-site
-  cancel-in-progress: true
 
 permissions:
   contents: read
+  pages: write
+  id-token: write
+
+# One deploy at a time; a newer save waits for the running one instead of cancelling it.
+concurrency:
+  group: pages
+  cancel-in-progress: false
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Get the code
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
+      - name: Set up Node
+        uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
 
-      - run: npm ci
+      - name: Install packages
+        run: npm ci
 
-      # Type-check + unit tests + validates every product file.
-      # If a product edit is invalid, the job stops here and the live site is NOT changed.
-      - run: npm run check
+      - name: Prepare content (validates every cake, copies CMS files)
+        run: npm run prepare:content
 
-      - run: npm run build
+      - name: Check (type-check + tests)
+        run: npm run check
+
+      - name: Build the static site
+        run: npm run build
         env:
-          NEXT_PUBLIC_SITE_URL: ${{ vars.SITE_URL }}
+          # Optional: add a repository variable named SITE_URL to override.
+          NEXT_PUBLIC_SITE_URL: ${{ vars.SITE_URL || 'https://passionbakerynchocos.com' }}
 
-      - name: Deploy to Cloudflare Pages
-        uses: cloudflare/wrangler-action@v3
+      - name: Disable Jekyll (so the _next folder is served)
+        run: touch out/.nojekyll
+
+      - name: Upload site
+        uses: actions/upload-pages-artifact@v3
         with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy out --project-name=${{ vars.CF_PAGES_PROJECT }} --branch=main
+          path: out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publish to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
