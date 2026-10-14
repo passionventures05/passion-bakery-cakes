@@ -1,0 +1,337 @@
+/* =====================================================================
+   RE-LAUNCH CEREMONY  (silk curtains, gold ribbon + bow, countdown)
+   Colours come from src/lib/launch.ts (--lc-c1/2/3, --lc-ink, --lc-glow).
+   ===================================================================== */
+
+.lc {
+  --lc-cut-ms: 1150ms; /* keep in step with TIMING in LaunchCeremony.tsx */
+  --lc-open-ms: 2700ms;
+  --lc-fade-ms: 900ms;
+
+  --lc-gold-1: #f6e7b4;
+  --lc-gold-2: #d8b45a;
+  --lc-gold-3: #b08a3a;
+  --lc-gold-4: #6b4e18;
+
+  --lc-val-h: calc(max(100vw, 900px) * 0.0825); /* height of the swagged valance */
+  --lc-rib-top: 54%;
+  --lc-rib-h: clamp(66px, 7.6vw, 102px);
+  --lc-bow-w: clamp(128px, 15vw, 236px);
+  --lc-bow-h: calc(var(--lc-bow-w) * 0.7333);
+  --lc-ease: cubic-bezier(0.65, 0.02, 0.2, 1);
+
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  display: none;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--lc-c1) 55%, #000);
+  overscroll-behavior: none;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+html[data-launch="pending"] .lc { display: block; }
+html[data-launch="pending"],
+html[data-launch="pending"] body { overflow: hidden; }
+
+/* once the curtains have finished drawing, the whole stage lets go */
+.lc[data-phase="open"] { opacity: 0; pointer-events: none; transition: opacity var(--lc-fade-ms) ease-out; background: transparent; }
+.lc[data-phase="opening"] { background: transparent; }
+
+/* ---------------------------------------------------------------- curtains */
+.lc::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: radial-gradient(ellipse 75% 70% at 50% 42%, transparent 35%, rgb(0 0 0 / 0.62) 100%);
+  transition: opacity 0.6s ease;
+}
+.lc[data-phase="opening"]::before,
+.lc[data-phase="open"]::before { opacity: 0; }
+.lc-curtain {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50.3%;
+  will-change: transform;
+}
+.lc-curtain--l { left: 0; transform-origin: 0 50%; }
+.lc-curtain--r { right: 0; transform-origin: 100% 50%; }
+
+.lc[data-phase="opening"] .lc-curtain,
+.lc[data-phase="open"] .lc-curtain {
+  transform: scaleX(0.13);
+  transition: transform var(--lc-open-ms) var(--lc-ease);
+}
+
+/* the velvet itself */
+.lc-drape { position: absolute; inset: 0; }
+
+.lc-silk {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgb(0 0 0 / 0.6) 0, rgb(0 0 0 / 0.1) 18%, rgb(0 0 0 / 0) 40%, rgb(0 0 0 / 0.05) 70%, rgb(0 0 0 / 0.55) 100%),
+    repeating-linear-gradient(90deg,
+      rgb(0 0 0 / 0.62) 0,
+      rgb(0 0 0 / 0.1) 9px,
+      color-mix(in srgb, var(--lc-c3) 40%, transparent) 26px,
+      rgb(0 0 0 / 0.05) 38px,
+      rgb(0 0 0 / 0.62) 64px),
+    repeating-linear-gradient(90deg,
+      rgb(0 0 0 / 0.34) 0,
+      rgb(0 0 0 / 0) 31px,
+      color-mix(in srgb, var(--lc-c3) 18%, transparent) 52px,
+      rgb(0 0 0 / 0) 74px,
+      rgb(0 0 0 / 0.34) 109px),
+    linear-gradient(90deg, var(--lc-c1), var(--lc-c2) 50%, var(--lc-c1));
+}
+
+/* where the two curtains meet: a soft dark seam, no gold line */
+.lc-curtain--l::after,
+.lc-curtain--r::after { content: ""; position: absolute; top: 0; bottom: 0; width: 3px; z-index: 2; background: linear-gradient(180deg, rgb(0 0 0 / 0.5), rgb(0 0 0 / 0.35)); pointer-events: none; }
+.lc-curtain--l::after { right: 0; }
+.lc-curtain--r::after { left: 0; }
+
+/* outer edge of each curtain */
+.lc-curtain--l::before,
+.lc-curtain--r::before { content: ""; position: absolute; top: 0; bottom: 0; width: 5px; background: linear-gradient(90deg, var(--lc-gold-4), var(--lc-gold-2), var(--lc-gold-4)); z-index: 2; }
+.lc-curtain--l::before { left: 0; }
+.lc-curtain--r::before { right: 0; }
+
+/* gold hem with a fringe */
+.lc-hem {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 40px;
+  background:
+    repeating-linear-gradient(90deg, var(--lc-gold-2) 0 3px, transparent 3px 7px) 0 14px / 100% 26px no-repeat,
+    linear-gradient(180deg, var(--lc-gold-4), var(--lc-gold-2) 35%, var(--lc-gold-1) 50%, var(--lc-gold-3) 80%, var(--lc-gold-4)) 0 0 / 100% 12px no-repeat;
+  -webkit-mask: linear-gradient(180deg, #000 0, #000 55%, transparent 100%);
+  mask: linear-gradient(180deg, #000 0, #000 55%, transparent 100%);
+}
+
+/* stage valance: heading board, draped swags and tassels */
+.lc-valance {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: max(100%, 900px);
+  z-index: 4;
+  transform: translateX(-50%);
+  filter: drop-shadow(0 7px 7px rgb(0 0 0 / 0.55));
+}
+.lc-valance svg { display: block; width: 100%; height: auto; overflow: visible; }
+.lc[data-phase="opening"] .lc-valance,
+.lc[data-phase="open"] .lc-valance { transform: translate(-50%, -125%); transition: transform 1.1s ease-in 0.5s; }
+
+.lc-sw-body { fill: url(#lcSb); }
+.lc-sw-hi { fill: url(#lcSh); }
+.lc-sw-fd { fill: none; stroke: rgb(0 0 0 / 0.5); stroke-width: 3.4; stroke-linecap: round; }
+.lc-sw-fl { fill: none; stroke: color-mix(in srgb, var(--lc-c3) 70%, transparent); stroke-width: 2; stroke-linecap: round; }
+.lc-sw-fringe { fill: none; stroke: var(--lc-gold-2); stroke-width: 11; stroke-dasharray: 2 3.2; }
+.lc-sw-edge { fill: none; stroke: var(--lc-gold-2); stroke-width: 3.6; }
+
+/* ------------------------------------------------------------------ ribbon */
+.lc-ribbon {
+  position: absolute;
+  top: var(--lc-rib-top);
+  height: var(--lc-rib-h);
+  margin-top: calc(var(--lc-rib-h) / -2);
+  left: 0; right: 0;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  background:
+    linear-gradient(180deg,
+      var(--lc-gold-4) 0, var(--lc-gold-2) 7%, var(--lc-gold-1) 20%, var(--lc-gold-2) 42%, var(--lc-gold-3) 58%, var(--lc-gold-2) 76%, var(--lc-gold-1) 90%, var(--lc-gold-4) 100%);
+  box-shadow: 0 14px 16px -14px rgb(0 0 0 / 0.6);
+}
+/* stitched edges */
+.lc-ribbon::before {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; top: 7px; bottom: 7px;
+  border-top: 1.5px dashed rgb(110 78 10 / 0.55);
+  border-bottom: 1.5px dashed rgb(110 78 10 / 0.55);
+  pointer-events: none;
+}
+.lc-ribbon--l { justify-content: flex-end; padding-right: calc(var(--lc-bow-w) / 2 + clamp(6px, 2vw, 34px)); transform-origin: 0 50%; }
+.lc-ribbon--r { justify-content: flex-start; padding-left: calc(var(--lc-bow-w) / 2 + clamp(6px, 2vw, 34px)); transform-origin: 100% 50%; }
+
+.lc-units { position: relative; z-index: 1; display: flex; gap: clamp(10px, 2.8vw, 54px); }
+.lc-unit { display: flex; flex-direction: column; align-items: center; line-height: 1; min-width: 2.2ch; }
+.lc-num {
+  font-family: var(--font-display, "Cormorant Garamond", Georgia, serif);
+  font-weight: 700;
+  font-size: clamp(26px, 3.4vw, 50px);
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums lining-nums;
+  font-feature-settings: "lnum" 1, "tnum" 1;
+  color: var(--lc-ink);
+  text-shadow: 0 1px 0 rgb(255 246 214 / 0.75);
+}
+.lc-lab {
+  margin-top: clamp(3px, 0.5vw, 7px);
+  font-family: var(--font-display, "Cormorant Garamond", Georgia, serif);
+  font-style: italic;
+  font-weight: 600;
+  font-size: clamp(10px, 1.25vw, 17px);
+  color: var(--lc-ink);
+  opacity: 0.85;
+}
+
+/* ready: the ribbon wakes up and invites a tap */
+.lc[data-ready="1"] .lc-ribbon { cursor: pointer; }
+.lc[data-ready="1"] .lc-bow-art { animation: lc-invite 1.6s ease-in-out infinite; }
+@keyframes lc-invite { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.06); } }
+
+/* ---------------------------------------------------------------- the bow */
+.lc-bow {
+  position: absolute;
+  z-index: 6;
+  left: 50%;
+  top: var(--lc-rib-top);
+  width: var(--lc-bow-w);
+  height: var(--lc-bow-h);
+  transform: translate(-50%, -45.45%); /* the knot sits on the ribbon's centre line */
+}
+.lc-bow-btn {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: none;
+  cursor: default;
+  -webkit-tap-highlight-color: transparent;
+}
+.lc[data-ready="1"] .lc-bow-btn { cursor: pointer; }
+.lc-bow-btn:focus-visible { outline: 3px solid #fff; outline-offset: 6px; border-radius: 12px; }
+.lc-bow-btn:disabled { opacity: 1; }
+.lc-bow-art { display: block; width: 100%; height: 100%; transform-origin: 50% 45%; filter: drop-shadow(0 6px 10px rgb(0 0 0 / 0.55)); }
+.lc-bow-svg { display: block; width: 100%; height: 100%; overflow: visible; }
+
+/* live site: a gentle tug before it opens */
+.lc[data-tug="1"] .lc-bow-art { animation: lc-tug 1.1s ease-in-out infinite; }
+@keyframes lc-tug {
+  0%, 100% { transform: rotate(0) translateY(0); }
+  25% { transform: rotate(-3.5deg) translateY(2px); }
+  60% { transform: rotate(3deg) translateY(-1px); }
+}
+
+/* the cut: the bow comes undone and drops, the two ribbon halves droop away */
+.lc[data-phase="cutting"] .lc-bow-art,
+.lc[data-phase="opening"] .lc-bow-art,
+.lc[data-phase="open"] .lc-bow-art { animation: lc-untie 1s cubic-bezier(0.4, 0, 0.6, 1) forwards; }
+@keyframes lc-untie {
+  0% { transform: scale(1) rotate(0); opacity: 1; }
+  22% { transform: scale(1.16) rotate(-3deg); opacity: 1; }
+  100% { transform: translateY(150%) rotate(22deg) scale(0.85); opacity: 0; }
+}
+.lc[data-phase="cutting"] .lc-ribbon--l,
+.lc[data-phase="opening"] .lc-ribbon--l,
+.lc[data-phase="open"] .lc-ribbon--l { animation: lc-droop-l 0.95s cubic-bezier(0.5, 0, 0.7, 1) 0.18s forwards; }
+.lc[data-phase="cutting"] .lc-ribbon--r,
+.lc[data-phase="opening"] .lc-ribbon--r,
+.lc[data-phase="open"] .lc-ribbon--r { animation: lc-droop-r 0.95s cubic-bezier(0.5, 0, 0.7, 1) 0.18s forwards; }
+@keyframes lc-droop-l { 0% { transform: rotate(0); opacity: 1; } 100% { transform: rotate(9deg) translateY(70px); opacity: 0; } }
+@keyframes lc-droop-r { 0% { transform: rotate(0); opacity: 1; } 100% { transform: rotate(-9deg) translateY(70px); opacity: 0; } }
+
+/* sparkles at the moment of the cut */
+.lc-sparks { position: absolute; left: 50%; top: 45.45%; width: 0; height: 0; pointer-events: none; }
+.lc-sparks i {
+  position: absolute;
+  left: -4px; top: -4px;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff 0, var(--lc-gold-1) 40%, transparent 72%);
+  opacity: 0;
+}
+.lc[data-phase="cutting"] .lc-sparks i { animation: lc-spark 0.95s ease-out 0.12s forwards; }
+@keyframes lc-spark {
+  0% { opacity: 1; transform: rotate(var(--a)) translateX(0) scale(0.6); }
+  100% { opacity: 0; transform: rotate(var(--a)) translateX(calc(var(--lc-bow-w) * var(--d))) scale(1.8); }
+}
+
+/* -------------------------------------------------------------------- text */
+.lc-ui { position: absolute; left: 0; right: 0; z-index: 5; text-align: center; padding: 0 18px; transition: opacity 0.5s ease; }
+.lc[data-phase="cutting"] .lc-ui,
+.lc[data-phase="opening"] .lc-ui,
+.lc[data-phase="open"] .lc-ui { opacity: 0; pointer-events: none; }
+
+.lc-ui--top {
+  top: var(--lc-val-h);
+  bottom: calc(100% - var(--lc-rib-top) + var(--lc-rib-h) / 2 + 14px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.lc-brand { margin: 0 0 4px; font-family: var(--font-display, Georgia, serif); font-style: italic; font-weight: 600; font-size: clamp(14px, 1.8vw, 22px); color: var(--lc-gold-1); opacity: 0.9; text-shadow: 0 2px 8px rgb(0 0 0 / 0.6); }
+.lc-title {
+  margin: 0;
+  font-family: var(--font-script, "Great Vibes", cursive);
+  font-weight: 400;
+  font-size: clamp(44px, min(8vw, 14vh), 112px);
+  line-height: 1.2;
+  padding: 0.14em 0.12em 0.2em; /* room for the swashes so the gradient text isn't clipped */
+  background: linear-gradient(180deg, #fff6c8 0%, #f2cf62 45%, #b88a1c 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 3px 8px rgb(0 0 0 / 0.55));
+}
+.lc-tagline { margin: 2px 0 0; font-family: var(--font-display, Georgia, serif); font-style: italic; font-size: clamp(16px, 2.1vw, 28px); color: #fff; opacity: 0.88; text-shadow: 0 2px 8px rgb(0 0 0 / 0.6); }
+
+.lc-ui--bottom { top: calc(var(--lc-rib-top) + var(--lc-bow-h) * 0.5 + clamp(20px, 3.5vh, 42px)); }
+.lc-when { margin: 0; min-height: 1.4em; font-family: var(--font-body, "Inter", sans-serif); font-weight: 500; font-size: clamp(13px, 1.5vw, 19px); letter-spacing: 0.02em; color: var(--lc-gold-1); text-shadow: 0 2px 8px rgb(0 0 0 / 0.65); }
+.lc-hint { margin: 8px 0 0; font-family: var(--font-display, Georgia, serif); font-style: italic; font-weight: 600; font-size: clamp(17px, 2.2vw, 30px); color: #fff; text-shadow: 0 2px 10px rgb(0 0 0 / 0.65); }
+.lc[data-ready="1"] .lc-hint { animation: lc-hint 1.5s ease-in-out infinite; }
+@keyframes lc-hint { 0%, 100% { opacity: 1; } 50% { opacity: 0.45; } }
+
+/* small gold divider between the title and the tagline */
+.lc-orn { position: relative; display: block; width: min(340px, 62vw); height: 14px; margin: 0 auto 4px; }
+.lc-orn::before { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 1px; background: linear-gradient(90deg, transparent, var(--lc-gold-2) 28%, var(--lc-gold-2) 72%, transparent); }
+.lc-orn::after { content: ""; position: absolute; left: 50%; top: 50%; width: 8px; height: 8px; transform: translate(-50%, -50%) rotate(45deg); background: var(--lc-c1); border: 1.5px solid var(--lc-gold-1); box-shadow: 0 0 0 4px var(--lc-c1); }
+
+/* rehearsal box (only when the address ends in ?studio on your own computer) */
+.lc-studio { top: auto; bottom: 14px; left: 14px; right: auto; width: min(320px, calc(100vw - 28px)); z-index: 9; padding: 12px; text-align: left; background: rgb(0 0 0 / 0.72); border: 1px solid var(--lc-gold-3); border-radius: 10px; font-family: var(--font-body, sans-serif); color: #fff; }
+.lc-studio label { display: block; font-size: 12px; margin-bottom: 6px; color: var(--lc-gold-1); }
+.lc-studio input { width: 100%; padding: 7px 8px; border-radius: 6px; border: 1px solid var(--lc-gold-3); background: #fff; color: #111; font: inherit; font-size: 14px; }
+.lc-studio-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.lc-studio-row button { padding: 6px 10px; border-radius: 6px; border: 0; background: linear-gradient(180deg, var(--lc-gold-1), var(--lc-gold-3)); color: var(--lc-ink); font: inherit; font-size: 12px; font-weight: 600; cursor: pointer; }
+.lc-studio-row button:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+
+/* --------------------------------------------------------------- poppers */
+.lc-confetti { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 100001; pointer-events: none; }
+
+/* ------------------------------------------------------------- small screens */
+@media (max-width: 600px) {
+  .lc { --lc-rib-top: 52%; --lc-bow-w: clamp(116px, 34vw, 150px); }
+  .lc-units { gap: 8px; }
+  .lc-unit { min-width: 2ch; }
+}
+@media (max-height: 780px) and (min-width: 601px) {
+  .lc { --lc-rib-top: 57%; }
+  .lc-brand { display: none; }
+  .lc-title { font-size: clamp(40px, min(7.5vw, 11.5vh), 96px); }
+  .lc-tagline { font-size: clamp(15px, 2.6vh, 22px); }
+}
+@media (max-height: 520px) {
+  .lc { --lc-rib-top: 56%; --lc-rib-h: 64px; --lc-bow-w: 120px; }
+  .lc-title { font-size: 40px; }
+  .lc-tagline, .lc-brand, .lc-orn { display: none; }
+  .lc-ui--bottom { top: calc(var(--lc-rib-top) + var(--lc-bow-h) * 0.5 + 10px); }
+  .lc-hint { font-size: 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lc { --lc-cut-ms: 350ms; --lc-open-ms: 900ms; --lc-fade-ms: 400ms; }
+  .lc[data-ready="1"] .lc-bow-art, .lc[data-tug="1"] .lc-bow-art, .lc[data-ready="1"] .lc-hint { animation: none; }
+}

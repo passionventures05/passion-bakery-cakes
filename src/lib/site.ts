@@ -9,7 +9,7 @@ export const site = {
   phone: "7365887555",
   phoneDisplay: "+91 73658 87555",
   whatsappNumber: "917365887555", // country code + number, digits only
-  email: "manjupathak135@gmail.com",
+  email: "Passionbakerynchocos@gmail.com",
   hours: "9AM - 6PM Daily",
   address: "Mumbai, Maharashtra, India",
   city: "Mumbai",

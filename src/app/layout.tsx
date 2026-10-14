@@ -2,11 +2,14 @@ import type { Metadata, Viewport } from "next";
 import "@fontsource/great-vibes";
 import CapacitorBridge from "@/components/CapacitorBridge";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
+import LaunchCeremony from "@/components/LaunchCeremony";
 import ScrollReveal from "@/components/ScrollReveal";
+import { bootScript } from "@/lib/launch";
 import { site } from "@/lib/site";
 import "./globals.css";
 import "@/styles/shared.css";
 import "@/styles/luxe.css";
+import "@/styles/launch.css";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -38,6 +41,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         {/* lets the CSS hide scroll-reveal elements only when JavaScript is actually running */}
         <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
+        {/* re-launch ceremony: decides before the first paint whether the curtains are shown (see src/lib/launch.ts) */}
+        <script dangerouslySetInnerHTML={{ __html: bootScript() }} />
       </head>
       <body>
         <a href="#main" className="skip-link">Skip to main content</a>
@@ -45,6 +50,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <FloatingWhatsApp />
         <ScrollReveal />
         <CapacitorBridge />
+        <LaunchCeremony />
       </body>
     </html>
   );
