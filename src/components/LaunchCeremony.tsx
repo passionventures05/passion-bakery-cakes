@@ -177,6 +177,8 @@ export default function LaunchCeremony() {
 
   const phaseRef = useRef<Phase>("locked");
   const launchAtRef = useRef(0);
+  const clockOffset = useRef(0); // visitor's clock vs the website server's clock
+  const firstSecs = useRef<number | null>(null);
   const tickRef = useRef<number | undefined>(undefined);
   const timers = useRef<number[]>([]);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -213,11 +215,31 @@ export default function LaunchCeremony() {
     lockPage(true);
 
     const tick = () => {
-      const s = Math.max(0, Math.ceil((launchAtRef.current - Date.now()) / 1000));
+      const s = Math.max(0, Math.ceil((launchAtRef.current - (Date.now() + clockOffset.current)) / 1000));
       setSecs((prev) => (prev === s ? prev : s));
     };
     tick();
     tickRef.current = window.setInterval(tick, 250);
+
+    // A visitor's own clock can be wrong. Ask the website's server what time it is and follow that instead.
+    (async () => {
+      try {
+        const t0 = Date.now();
+        const res = await fetch(window.location.pathname, { method: "HEAD", cache: "no-store" });
+        const header = res.headers.get("date");
+        const t1 = Date.now();
+        const server = header ? Date.parse(header) : NaN;
+        if (!Number.isNaN(server)) {
+          const off = server + 500 + (t1 - t0) / 2 - t1; // the Date header is rounded down to the second
+          if (Math.abs(off) > 2000) {
+            clockOffset.current = off;
+            tick();
+          }
+        }
+      } catch {
+        /* offline or blocked: keep the visitor's own clock */
+      }
+    })();
 
     return () => {
       window.clearInterval(tickRef.current);
@@ -250,18 +272,36 @@ export default function LaunchCeremony() {
     later(() => go("gone"), t.cut + t.open + t.fade);
   }, []);
 
-  const zero = secs === 0;
   const ready = mode === "manual" && phase === "locked" && secs !== null && secs <= launch.cutWindowSeconds;
 
-  /* live website: a little tug on the bow, then it opens by itself */
   useEffect(() => {
-    if (mode !== "auto" || phase !== "locked" || secs === null) return;
-    if (launch.lockLiveSite && !zero) return;
+    if (secs !== null && firstSecs.current === null) firstSecs.current = secs;
+  }, [secs]);
+
+  /* live website, "no waiting" version: a little tug on the bow, then it opens by itself */
+  useEffect(() => {
+    if (mode !== "auto" || launch.lockLiveSite || phase !== "locked" || secs === null) return;
     setTug(true);
     const t = window.setTimeout(startCut, launch.autoOpenDelayMs);
     return () => window.clearTimeout(t);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mode, phase, zero, secs === null, startCut]);
+  }, [mode, phase, secs === null, startCut]);
+
+  /* live website, locked version: wait for the real launch time, tug just before, then open on its own */
+  useEffect(() => {
+    if (mode !== "auto" || !launch.lockLiveSite || phase !== "locked" || secs === null) return;
+    const late = firstSecs.current === 0; // the visitor arrived after the launch time
+    if (secs === 0) {
+      if (!late) {
+        startCut();
+        return;
+      }
+      setTug(true);
+      const t = window.setTimeout(startCut, launch.autoOpenDelayMs);
+      return () => window.clearTimeout(t);
+    }
+    setTug(secs <= Math.ceil(launch.autoOpenDelayMs / 1000));
+  }, [mode, phase, secs, startCut]);
 
   useEffect(() => {
     if (!poppers || !canvasRef.current) return;
@@ -378,11 +418,13 @@ export default function LaunchCeremony() {
           <div className="lc-ui lc-ui--bottom">
             <p className="lc-when">{label}</p>
             <p className="lc-hint" aria-live="polite">
-              {mode === "auto"
+              {mode === "auto" && (!launch.lockLiveSite || secs === 0 || phase !== "locked")
                 ? "Opening the doors\u2026"
                 : ready
                   ? "Tap the ribbon to cut it"
-                  : "Counting down to the ribbon cutting"}
+                  : mode === "auto"
+                    ? "Counting down to our grand re-launch"
+                    : "Counting down to the ribbon cutting"}
             </p>
           </div>
 

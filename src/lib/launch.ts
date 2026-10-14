@@ -25,16 +25,16 @@ export const launch = {
   cutWindowSeconds: 30,
 
   /**
-   * On the LIVE website the ribbon opens by itself, gracefully, after this many milliseconds
-   * (the bow gives a little tug first). Visitors see it once per browser for each launch date.
+   * LIVE website: true  = visitors see the curtains and the live countdown, and the website stays
+   *                       closed until the launch time. At that moment the ribbon opens by itself,
+   *                       the curtains slide open and the poppers go off.
+   *               false = no waiting: the ribbon just opens by itself a moment after the page loads.
+   * (On your own laptop the ribbon is always cut by tapping it.)
    */
-  autoOpenDelayMs: 2200,
+  lockLiveSite: true as boolean,
 
-  /**
-   * false = live visitors always get the auto-opening ceremony (what you asked for).
-   * true  = live visitors must wait for the real countdown to hit zero; then it opens by itself.
-   */
-  lockLiveSite: false,
+  /** The bow gives a little tug this many milliseconds before opening on its own. */
+  autoOpenDelayMs: 2200,
 
   /** Colours. Gold is shared; only the curtain colours change per brand. */
   theme: {
@@ -87,7 +87,7 @@ export function resolveLaunch(search: string): ResolvedLaunch {
   };
 }
 
-export const doneKey = (launchAt: number) => `lc-done:${launchAt}`;
+export const doneKey = (launchAt: number) => `lc-done:${launchAt}${launch.lockLiveSite ? ":lock" : ""}`;
 
 /** True when the page is running on your own computer (not the published website). */
 export function isLocalHost(hostname: string): boolean {
@@ -134,7 +134,7 @@ export const toIstInput = (ms: number) => new Date(ms + 330 * 60000).toISOString
  * and a first-time visitor never sees the site before the curtains. Mirrors the logic above in plain ES5.
  */
 export function bootScript(): string {
-  const cfg = JSON.stringify({ e: launch.enabled, at: launch.launchAt });
+  const cfg = JSON.stringify({ e: launch.enabled, at: launch.launchAt, l: launch.lockLiveSite });
   return (
     "(function(){var d=document.documentElement;try{var c=" +
     cfg +
@@ -149,7 +149,7 @@ export function bootScript(): string {
     "var q=location.search,m=/[?&]launch=([^&]*)/.exec(q),t=NaN;" +
     "if(m)t=P(decodeURIComponent(m[1].replace(/\\+/g,' ')));if(t!==t)t=P(c.at);" +
     "var r=/[?&]replay(=|&|$)/.test(q),done=false;" +
-    "try{done=!!localStorage.getItem('lc-done:'+t)}catch(e){}" +
+    "try{done=!!localStorage.getItem('lc-done:'+t+(c.l?':lock':''))}catch(e){}" +
     "d.setAttribute('data-launch',(t!==t||(done&&!r))?'done':'pending')}catch(e){d.setAttribute('data-launch','done')}})()"
   );
 }
