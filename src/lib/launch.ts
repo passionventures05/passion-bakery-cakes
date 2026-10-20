@@ -15,7 +15,7 @@ export const launch = {
   enabled: true,
 
   /** Launch date & time in INDIA time (IST). Format: YYYY-MM-DDTHH:mm:ss+05:30 */
-  launchAt: "2026-10-20T15:00:00+05:30",
+  launchAt: "2026-10-20T13:00:00+05:30",
 
   /** Words shown on the curtains. */
   title: "Grand Re-Launch",
