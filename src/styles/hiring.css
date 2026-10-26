@@ -1,0 +1,48 @@
+/* =====================================================================
+   HIRING PAGE — builds on special-order.css + luxe-special-order.css (same cocoa card, gold accents,
+   pistachio page). Only what those files don't already cover lives here.
+   ===================================================================== */
+
+/* email fields look exactly like the other text inputs */
+.page-hiring input[type="email"] {
+  width: 100%;
+  padding: 14px 18px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  box-sizing: border-box;
+  font-family: var(--font-body);
+  font-size: clamp(0.9rem, 2vw, 1rem);
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--primary-text);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+.page-hiring input[type="email"]:focus {
+  outline: none;
+  border-color: var(--gold);
+  background: white;
+  box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3), 0 0 0 4px rgba(255, 215, 0, 0.1);
+  transform: translateY(-2px);
+}
+.page-hiring input[type="email"]::placeholder { color: rgba(44, 24, 16, 0.62); font-style: italic; }
+
+/* "(optional)" next to a label */
+.page-hiring label .opt { font-weight: 400; color: #ffe680; }
+
+/* the extra, email-only contact card under the application form */
+.page-hiring .hiring-contact .lx-note-box { margin: 0 0 22px; }
+.page-hiring .hiring-contact .hiring-contact-lead {
+  margin: -6px 0 22px;
+  font-family: var(--font-body);
+  font-size: 0.98rem;
+  line-height: 1.7;
+  color: #fff;
+}
+.page-hiring .hiring-contact .hiring-contact-lead a { color: var(--gold); font-weight: 600; overflow-wrap: anywhere; }
+.page-hiring .hiring-contact .hiring-contact-lead a:hover { color: #fff; }
+
+/* both cards are full-width buttons inside; keep the big button from stretching oddly on the contact card */
+.page-hiring .hiring-contact form > .lx-btn { width: 100%; margin-top: 4px; }
+
+/* this page is email-only, so the WhatsApp chat bubble is hidden here */
+body:has(.page-hiring) .lx-wa { display: none; }

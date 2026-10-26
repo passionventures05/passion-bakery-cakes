@@ -2,7 +2,8 @@ import Link from "next/link";
 import { site, whatsappChatUrl } from "@/lib/site";
 import Icon, { type IconName } from "./Icon";
 
-export default function Footer() {
+/** `hidePhone` leaves the phone number out (used on the hiring page, which is email-only). */
+export default function Footer({ hidePhone = false }: { hidePhone?: boolean }) {
   const year = new Date().getFullYear();
 
   return (
@@ -37,6 +38,7 @@ export default function Footer() {
             <li><Link href="/">Home</Link></li>
             <li><Link href="/products/">Cakes Collection</Link></li>
             <li><Link href="/special-order/">Special Orders</Link></li>
+            <li><Link href="/hiring/">We&apos;re Hiring</Link></li>
             <li><Link href="/cart/">Shopping Cart</Link></li>
             <li><Link href="/terms/">Delivery &amp; Terms</Link></li>
             <li><Link href="/privacy/">Privacy Policy</Link></li>
@@ -58,10 +60,12 @@ export default function Footer() {
             <Icon name="envelope" />
             <span>{site.email}</span>
           </div>
-          <div className="contact-info-item">
-            <Icon name="phone" />
-            <span>{site.phoneDisplay}</span>
-          </div>
+          {!hidePhone && (
+            <div className="contact-info-item">
+              <Icon name="phone" />
+              <span>{site.phoneDisplay}</span>
+            </div>
+          )}
           <div className="contact-info-item">
             <Icon name="clock-o" />
             <span>Available: {site.hours}</span>

@@ -228,6 +228,15 @@ body { font-family: var(--font-body); -webkit-font-smoothing: antialiased; text-
   }
 }
 
+/* seven menu links: tighten them a little on small laptops so the brand name keeps its room */
+@media screen and (min-width: 961px) and (max-width: 1180px) {
+  .site .lx-nav .nav-links { gap: 0; }
+  .site .lx-nav .nav-links a { padding: 10px 9px; font-size: 0.88rem; letter-spacing: 0.02em; }
+}
+@media screen and (min-width: 961px) and (max-width: 1040px) {
+  .site .lx-nav .nav-links a { padding: 10px 6px; font-size: 0.86rem; letter-spacing: 0; }
+}
+
 /* =====================================================================
    SECTION DIVIDER (replaces the stacked, floating border images)
    ===================================================================== */
