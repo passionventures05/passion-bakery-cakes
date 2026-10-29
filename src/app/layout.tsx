@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   title: { default: `${site.name} | Custom Cakes in ${site.city}`, template: `%s | ${site.name}` },
   description: site.description,
   applicationName: site.name,
-  icons: { icon: "/Cake_Logo.jpg", apple: "/Cake_Logo.jpg" },
+  icons: { icon: "/PBC_Logo-icon.png", apple: "/PBC_Logo-apple.png" },
   openGraph: {
     type: "website",
     siteName: site.name,

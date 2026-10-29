@@ -263,11 +263,12 @@ export default function LaunchCeremony() {
     go("cutting");
     const later = (fn: () => void, ms: number) => timers.current.push(window.setTimeout(fn, ms));
     later(() => go("opening"), t.cut);
+    // the poppers, fireworks and balloons go off as the curtains start to part, so the doors open onto a party
+    later(() => setPoppers(true), t.cut + (reducedMotion() ? 0 : 450));
     later(() => {
       go("open");
       lockPage(false);
       document.documentElement.setAttribute("data-launch", "done");
-      setPoppers(true);
     }, t.cut + t.open);
     later(() => go("gone"), t.cut + t.open + t.fade);
   }, []);
@@ -307,6 +308,7 @@ export default function LaunchCeremony() {
     if (!poppers || !canvasRef.current) return;
     return firePoppers(canvasRef.current, {
       colors: launch.theme.confetti,
+      balloonColors: launch.theme.balloons,
       reduced: reducedMotion(),
       onDone: () => setPoppers(false),
     });
@@ -409,7 +411,10 @@ export default function LaunchCeremony() {
           </div>
 
           <div className="lc-ui lc-ui--top">
-            <p className="lc-brand">{site.name}</p>
+            <div className="lc-logo-wrap">
+              <img className="lc-logo" src={launch.logo} alt="" width={480} height={379} decoding="async" aria-hidden="true" />
+              <p className="lc-brand">{site.name}</p>
+            </div>
             <h1 className="lc-title">{launch.title}</h1>
             <span className="lc-orn" aria-hidden="true" />
             <p className="lc-tagline">{launch.tagline}</p>

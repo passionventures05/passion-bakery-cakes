@@ -15,11 +15,14 @@ export const launch = {
   enabled: true,
 
   /** Launch date & time in INDIA time (IST). Format: YYYY-MM-DDTHH:mm:ss+05:30 */
-  launchAt: "2026-10-20T13:00:00+05:30",
+  launchAt: "2026-11-06T12:40:00+05:30",
 
   /** Words shown on the curtains. */
   title: "Grand Re-Launch",
-  tagline: "Something sweet is about to begin",
+  tagline: "Something very sweet is about to happen",
+
+  /** Logo shown on the curtains (above the brand name). */
+  logo: "/PBC_Logo-480.webp",
 
   /** On YOUR laptop: the ribbon can be cut during the last N seconds of the countdown. */
   cutWindowSeconds: 30,
@@ -43,7 +46,10 @@ export const launch = {
     curtainSheen: "#2a3d9c",
     ink: "#0a1138", // text colour on the gold ribbon
     glow: "rgba(255, 215, 0, 0.6)",
-    confetti: ["#d8b45a", "#f6e7b4", "#ffffff", "#fea3aa", "#5a6bd6", "#9fe8f0"] as readonly string[],
+    /** Bright, festive colours for the party poppers and streamers. */
+    confetti: ["#ff3d6e", "#ffd23f", "#3ddc97", "#3d8bff", "#b24bff", "#ff8c1a", "#ffffff", "#f6e7b4"] as readonly string[],
+    /** Balloon colours (brand maroon + gold, then bright party colours). */
+    balloons: ["#c8102e", "#e8b923", "#ff4f8b", "#ff8c1a", "#3d8bff", "#2fcf8f", "#a14bff", "#ffffff"] as readonly string[],
   },
 } as const;
 

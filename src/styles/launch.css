@@ -14,7 +14,8 @@
   --lc-gold-4: #6b4e18;
 
   --lc-val-h: calc(max(100vw, 900px) * 0.0825); /* height of the swagged valance */
-  --lc-rib-top: 54%;
+  --lc-rib-top: 56%;
+  --lc-logo: clamp(64px, min(11vh, 26vw), 128px); /* height of the logo badge */
   --lc-rib-h: clamp(66px, 7.6vw, 102px);
   --lc-bow-w: clamp(128px, 15vw, 236px);
   --lc-bow-h: calc(var(--lc-bow-w) * 0.7333);
@@ -273,12 +274,31 @@ html[data-launch="pending"] body { overflow: hidden; }
   justify-content: center;
   align-items: center;
 }
-.lc-brand { margin: 0 0 4px; font-family: var(--font-display, Georgia, serif); font-style: italic; font-weight: 600; font-size: clamp(14px, 1.8vw, 22px); color: var(--lc-gold-1); opacity: 0.9; text-shadow: 0 2px 8px rgb(0 0 0 / 0.6); }
+.lc-logo-wrap { display: flex; flex-direction: column; align-items: center; gap: clamp(4px, 0.9vh, 9px); margin-bottom: clamp(0px, 0.6vh, 6px); }
+.lc-logo {
+  display: block;
+  height: var(--lc-logo);
+  width: auto;
+  max-width: 80vw;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 14px rgb(0 0 0 / 0.6)) drop-shadow(0 0 22px var(--lc-glow));
+}
+.lc-brand {
+  margin: 0;
+  font-family: var(--font-display, Georgia, serif);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: clamp(12px, 1.55vw, 21px);
+  line-height: 1.1;
+  color: var(--lc-gold-1);
+  text-shadow: 0 2px 8px rgb(0 0 0 / 0.7), 0 0 14px rgb(216 180 90 / 0.35);
+}
 .lc-title {
   margin: 0;
   font-family: var(--font-script, "Great Vibes", cursive);
   font-weight: 400;
-  font-size: clamp(44px, min(8vw, 14vh), 112px);
+  font-size: clamp(40px, min(6.6vw, 9.6vh), 100px);
   line-height: 1.2;
   padding: 0.14em 0.12em 0.2em; /* room for the swashes so the gradient text isn't clipped */
   background: linear-gradient(180deg, #fff6c8 0%, #f2cf62 45%, #b88a1c 100%);
@@ -287,7 +307,7 @@ html[data-launch="pending"] body { overflow: hidden; }
   color: transparent;
   filter: drop-shadow(0 3px 8px rgb(0 0 0 / 0.55));
 }
-.lc-tagline { margin: 2px 0 0; font-family: var(--font-display, Georgia, serif); font-style: italic; font-size: clamp(16px, 2.1vw, 28px); color: #fff; opacity: 0.88; text-shadow: 0 2px 8px rgb(0 0 0 / 0.6); }
+.lc-tagline { margin: 2px 0 0; font-family: var(--font-display, Georgia, serif); font-style: italic; font-size: clamp(15px, 2vw, 27px); color: #fff; opacity: 0.92; max-width: 92vw; text-shadow: 0 2px 8px rgb(0 0 0 / 0.6); }
 
 .lc-ui--bottom { top: calc(var(--lc-rib-top) + var(--lc-bow-h) * 0.5 + clamp(20px, 3.5vh, 42px)); }
 .lc-when { margin: 0; min-height: 1.4em; font-family: var(--font-body, "Inter", sans-serif); font-weight: 500; font-size: clamp(13px, 1.5vw, 19px); letter-spacing: 0.02em; color: var(--lc-gold-1); text-shadow: 0 2px 8px rgb(0 0 0 / 0.65); }
@@ -318,15 +338,17 @@ html[data-launch="pending"] body { overflow: hidden; }
   .lc-unit { min-width: 2ch; }
 }
 @media (max-height: 780px) and (min-width: 601px) {
-  .lc { --lc-rib-top: 57%; }
-  .lc-brand { display: none; }
-  .lc-title { font-size: clamp(40px, min(7.5vw, 11.5vh), 96px); }
+  .lc { --lc-rib-top: 60%; }
+  .lc-title { font-size: clamp(38px, min(6.4vw, 9vh), 88px); }
   .lc-tagline { font-size: clamp(15px, 2.6vh, 22px); }
 }
 @media (max-height: 520px) {
   .lc { --lc-rib-top: 56%; --lc-rib-h: 64px; --lc-bow-w: 120px; }
   .lc-title { font-size: 40px; }
-  .lc-tagline, .lc-brand, .lc-orn { display: none; }
+  .lc-tagline, .lc-orn { display: none; }
+  .lc-logo-wrap { flex-direction: row; gap: 10px; }
+  .lc { --lc-logo: 50px; }
+  .lc-brand { font-size: 12px; }
   .lc-ui--bottom { top: calc(var(--lc-rib-top) + var(--lc-bow-h) * 0.5 + 10px); }
   .lc-hint { font-size: 16px; }
 }

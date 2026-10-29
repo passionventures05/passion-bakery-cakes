@@ -22,7 +22,7 @@ const jsonLd = {
   description: site.description,
   url: site.url,
   image: `${site.url}/og-banner.jpg`,
-  logo: `${site.url}/Cake_Logo.jpg`,
+  logo: `${site.url}/PBC_Logo.png`,
   telephone: `+91${site.phone}`,
   email: site.email,
   address: { "@type": "PostalAddress", addressLocality: site.city, addressRegion: site.region, addressCountry: site.country },
@@ -98,7 +98,7 @@ export default function HomePage() {
           </div>
           <div className="about-container">
             <div className="about-left" data-reveal="left">
-              <img src={site.aboutImage} width={480} height={480} alt={`${site.name}`} loading="lazy" decoding="async" />
+              <img src={site.aboutImage} width={480} height={379} alt={`${site.name}`} loading="lazy" decoding="async" />
             </div>
             <div className="about-right" data-reveal="right">
               <p>

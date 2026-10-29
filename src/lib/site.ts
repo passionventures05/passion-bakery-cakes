@@ -24,7 +24,7 @@ export const site = {
   instagramHandle: "@passionbakerynchoco15",
 
   /** Photo shown in the "About" section (swap for a photo of the baker any time). */
-  aboutImage: "/Cake_Logo-480.webp",
+  aboutImage: "/PBC_Logo-480.webp",
 
   /** Cakes shown in "Signature Cakes" on the home page (must match the cake names exactly). */
   featured: [

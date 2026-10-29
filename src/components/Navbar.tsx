@@ -53,7 +53,7 @@ export default function Navbar({ active, onHome = false }: NavbarProps) {
     <nav className={open ? "topnav lx-nav responsive" : "topnav lx-nav"} id="myTopnav" aria-label="Main">
       <div className="lx-nav-inner">
         <Link href="/" className="nav-brand" aria-label={`${site.name} — home`} onClick={close}>
-          <img src="/Cake_Logo-96.webp" width={44} height={44} alt="" />
+          <img src="/PBC_Logo-160.webp" width={56} height={44} alt="" />
           <span className="nav-brand-name">{site.name}</span>
         </Link>
 

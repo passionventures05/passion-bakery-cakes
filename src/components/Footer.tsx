@@ -10,7 +10,7 @@ export default function Footer({ hidePhone = false }: { hidePhone?: boolean }) {
     <footer className="business-footer">
       <div className="footer-content">
         <div className="footer-section">
-          <img src="/Cake_Logo-96.webp" width={96} height={96} alt={`${site.name} logo`} className="footer-logo-img" loading="lazy" decoding="async" />
+          <img src="/PBC_Logo-160.webp" width={160} height={126} alt={`${site.name} logo`} className="footer-logo-img" loading="lazy" decoding="async" />
           <p className="footer-brand-name">{site.name}</p>
           <p>
             Crafting sweet memories with every bite. We specialize in custom cakes made with
