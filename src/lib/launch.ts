@@ -15,7 +15,7 @@ export const launch = {
   enabled: true,
 
   /** Launch date & time in INDIA time (IST). Format: YYYY-MM-DDTHH:mm:ss+05:30 */
-  launchAt: "2026-11-06T12:40:00+05:30",
+  launchAt: "2026-11-05T22:12:00+05:30",
 
   /** Words shown on the curtains. */
   title: "Grand Re-Launch",
@@ -38,6 +38,9 @@ export const launch = {
 
   /** The bow gives a little tug this many milliseconds before opening on its own. */
   autoOpenDelayMs: 2200,
+
+  /** Celebration sounds (two party poppers, champagne bottles, clapping, cheers and whistles). Set to false for a silent ceremony. */
+  sound: true as boolean,
 
   /** Colours. Gold is shared; only the curtain colours change per brand. */
   theme: {

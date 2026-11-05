@@ -7,11 +7,15 @@
  * Everything is drawn on one full-screen canvas.
  */
 
+import { startCelebrationAudio } from "./celebration-sound";
+
 interface Options {
   /** confetti / streamer colours */
   colors: readonly string[];
   /** balloon colours (falls back to `colors`) */
   balloonColors?: readonly string[];
+  /** play the celebration sounds (two party poppers, champagne, clapping, cheers and whistles) with the visuals */
+  sound?: boolean;
   /** visitor prefers less motion: a single small burst, no fireworks, no balloons */
   reduced?: boolean;
   onDone?: () => void;
@@ -113,7 +117,7 @@ function starPath(ctx: CanvasRenderingContext2D, r: number) {
   ctx.closePath();
 }
 
-export function firePoppers(canvas: HTMLCanvasElement, { colors, balloonColors, reduced = false, onDone }: Options): () => void {
+export function firePoppers(canvas: HTMLCanvasElement, { colors, balloonColors, reduced = false, sound, onDone }: Options): () => void {
   const ctx = canvas.getContext("2d");
   if (!ctx) {
     onDone?.();
@@ -310,6 +314,8 @@ export function firePoppers(canvas: HTMLCanvasElement, { colors, balloonColors, 
   let showerAcc = 0;
   for (let i = 0; i < balloonCount; i++) balloons.push(makeBalloon(200 + (i / balloonCount) * 3400 + rand(-80, 80)));
 
+  const stopSound = sound ? startCelebrationAudio({ reduced, volleys }) : null;
+
   const t0 = performance.now();
   let last = t0;
   let raf = 0;
@@ -498,5 +504,6 @@ export function firePoppers(canvas: HTMLCanvasElement, { colors, balloonColors, 
     finished = true;
     cancelAnimationFrame(raf);
     window.removeEventListener("resize", resize);
+    stopSound?.();
   };
 }

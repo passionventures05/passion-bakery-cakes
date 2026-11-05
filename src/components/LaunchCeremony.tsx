@@ -3,6 +3,8 @@
 import { Capacitor } from "@capacitor/core";
 import { useCallback, useEffect, useRef, useState, type CSSProperties } from "react";
 import { doneKey, formatLaunchLabel, isLocalHost, launch, resolveLaunch, toIstInput } from "@/lib/launch";
+import { isAudioRunning, isMuted, onAudioChange, preloadApplause, setMuted, unlockAudio } from "@/lib/celebration-sound";
+import { startAutoScroll } from "@/lib/auto-scroll";
 import { firePoppers } from "@/lib/poppers";
 import { site } from "@/lib/site";
 
@@ -172,6 +174,7 @@ export default function LaunchCeremony() {
   const [label, setLabel] = useState("");
   const [tug, setTug] = useState(false);
   const [poppers, setPoppers] = useState(false);
+  const [sound, setSound] = useState({ on: false, muted: false });
   const [studio, setStudio] = useState(false);
   const [studioValue, setStudioValue] = useState("");
 
@@ -182,6 +185,7 @@ export default function LaunchCeremony() {
   const tickRef = useRef<number | undefined>(undefined);
   const timers = useRef<number[]>([]);
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const stopScroll = useRef<(() => void) | null>(null);
 
   const go = (p: Phase) => {
     phaseRef.current = p;
@@ -247,7 +251,13 @@ export default function LaunchCeremony() {
     };
   }, []);
 
-  useEffect(() => () => timers.current.forEach((t) => window.clearTimeout(t)), []);
+  useEffect(
+    () => () => {
+      timers.current.forEach((t) => window.clearTimeout(t));
+      stopScroll.current?.();
+    },
+    [],
+  );
 
   /* ---- the cut: ribbon parts -> curtains draw open -> poppers ---- */
   const startCut = useCallback(() => {
@@ -304,13 +314,50 @@ export default function LaunchCeremony() {
     setTug(secs <= Math.ceil(launch.autoOpenDelayMs / 1000));
   }, [mode, phase, secs, startCut]);
 
+  /* ---- sound: browsers only allow audio after a tap, so the first tap / key press anywhere unlocks it ---- */
+  const active = phase !== "gone";
+  useEffect(() => {
+    if (!launch.sound || !active) return;
+    preloadApplause(); // fetch applause.wav now, while the curtains are closed, so it can start instantly
+    const sync = () => setSound({ on: isAudioRunning(), muted: isMuted() });
+    sync();
+    const off = onAudioChange(sync);
+    const unlock = (e: Event) => {
+      if ((e.target as Element | null)?.closest?.(".lc-sound")) return; // the sound button handles its own taps
+      unlockAudio();
+      sync();
+    };
+    const events = ["pointerup", "touchend", "click", "keydown"] as const;
+    events.forEach((e) => window.addEventListener(e, unlock, { passive: true }));
+    return () => {
+      off();
+      events.forEach((e) => window.removeEventListener(e, unlock));
+    };
+  }, [active]);
+
+  const toggleSound = () => {
+    if (!isAudioRunning()) {
+      unlockAudio();
+      setMuted(false);
+    } else {
+      setMuted(!isMuted());
+    }
+    setSound({ on: isAudioRunning(), muted: isMuted() });
+  };
+
   useEffect(() => {
     if (!poppers || !canvasRef.current) return;
     return firePoppers(canvasRef.current, {
       colors: launch.theme.confetti,
       balloonColors: launch.theme.balloons,
+      sound: launch.sound,
       reduced: reducedMotion(),
-      onDone: () => setPoppers(false),
+      onDone: () => {
+        setPoppers(false);
+        // the balloons and fireworks are over: slowly drift down the page, top to bottom
+        stopScroll.current?.();
+        stopScroll.current = startAutoScroll();
+      },
     });
   }, [poppers]);
 
@@ -432,6 +479,23 @@ export default function LaunchCeremony() {
                     : "Counting down to the ribbon cutting"}
             </p>
           </div>
+
+          {launch.sound && phase === "locked" && (
+            <button type="button" className="lc-sound" onClick={toggleSound} aria-pressed={sound.on && !sound.muted}>
+              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5H4z" fill="currentColor" stroke="none" />
+                {sound.on && !sound.muted ? (
+                  <>
+                    <path d="M15.5 9a4 4 0 0 1 0 6" />
+                    <path d="M18 6.5a8 8 0 0 1 0 11" />
+                  </>
+                ) : (
+                  <path d="M16 9.5l5 5M21 9.5l-5 5" />
+                )}
+              </svg>
+              {!sound.on ? "Tap for celebration sound" : sound.muted ? "Sound off" : "Sound on"}
+            </button>
+          )}
 
           {studio && (
             <form

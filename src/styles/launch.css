@@ -328,6 +328,33 @@ html[data-launch="pending"] body { overflow: hidden; }
 .lc-studio-row button { padding: 6px 10px; border-radius: 6px; border: 0; background: linear-gradient(180deg, var(--lc-gold-1), var(--lc-gold-3)); color: var(--lc-ink); font: inherit; font-size: 12px; font-weight: 600; cursor: pointer; }
 .lc-studio-row button:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
 
+/* sound button (bottom-right of the curtains) */
+.lc-sound {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  z-index: 9;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px 8px 11px;
+  border-radius: 999px;
+  border: 1px solid var(--lc-gold-3);
+  background: rgb(0 0 0 / 0.62);
+  color: var(--lc-gold-1);
+  font: 600 13px/1 var(--font-body, "Inter", sans-serif);
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.lc-sound:hover { background: rgb(0 0 0 / 0.8); transform: translateY(-1px); }
+.lc-sound:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+.lc-sound[aria-pressed="false"] { animation: lc-hint 1.8s ease-in-out infinite; }
+@media (max-width: 600px) {
+  .lc-sound { right: 10px; bottom: 10px; padding: 7px 12px 7px 9px; font-size: 12px; }
+}
+
 /* --------------------------------------------------------------- poppers */
 .lc-confetti { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 100001; pointer-events: none; }
 
